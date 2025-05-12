@@ -41,5 +41,14 @@ public class CollectionVsCollections {
         System.out.println("list after sorting: "+list);
         //foreach
         list.forEach((Integer val) -> System.out.println(val));
+        // iterator
+        Iterator<Integer> it = list.iterator();
+        while(it.hasNext()){
+            int nextVal = it.next();
+            System.out.println(nextVal);
+            if(nextVal == 4){
+                list.remove(nextVal);
+            }
+        }
     }
 }
