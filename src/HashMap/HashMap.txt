@@ -1,0 +1,159 @@
+In java map is an object, that maps keys to values. it can not contain duplicate keys and each
+key can map at most one value. Think of like it is a dictionary.
+
+Characteristics of Map interface
+1) key-value pairs: Each entry in a map consists of key and value.
+2) Unique keys: No two entries have a same key.
+3) One value per key: Each key map to a single value
+4) Order: Some implementation of map maintain insertion order(LinkedHashMap), natural order(TreeMap)
+           or no order (HashMap)
+
+
+
+----------------------           Key characteristics of it      ---------------------------------------------
+
+
+1) Unordered: Does not maintain any order of its elements
+2) Allow Null keys and values: Can have one null key and multiple null values
+3) Not Synchronized: Not thread-safe; require external synchronization if used in a multi-thread context.
+4) Performance: Offers constant time performance (O(1)) for basic operation like get and put, assuming
+the hash function disperses the element properly.
+
+
+---------------------------- Internal Working of hashmap -----------------------------------------------------
+
+1) Hashing:
+ - when you put key, value pair in the map, java calls hashCode() on the key
+ - this hash code is processed to determine bucket index in internal array.
+
+ int hash = hash(key.hashCode());
+ int index = hash % capacity;
+
+2) Bucket Array:
+- Internally hashmap use array of nodes called buckets.
+- Each bucket is like a LinkedList(or red-black tree in a newer version)
+
+Node<K,V>[] table; // internal array
+
+3)Put Operation (map.put(key,value))
+
+steps: 1. called hashCode() on a key --> compute hash
+       2. map hash to bucket index
+       3. If no entry at that index --> Insert new node
+       4. If node exists
+          - check if key is already exists using .equals()
+          - If yes, update value
+          - If No, add new node(link list or tree)
+
+4) collision handling:
+- Two keys can have same hash index it's called collision
+- java usages:
+    - LinkedList(java7 and earlier)
+    - Balanced BST(Red-Black tree) if number of node in the bucket > 8 (java8+)
+
+
+5) Get() Operation
+- compute hash and index
+- go to the bucket at that index
+- Traverse the list/tree to find key using .equals()
+- Return the assosiated value
+
+6) Rehashing and Resizing
+- Default capacity: 16, load factor: 0.75
+- when size exceeds capacity*loadfactor, it resizes(generally double it)
+- All sxisiting entries are rehashed and redistributed into new array
+
+
+7) Time Complxity of each
+put(key,value) -- avg case
+
+| Operation              | Average Case Time Complexity | Worst Case Time Complexity | Explanation                                                                               |
+| ---------------------- | ---------------------------- | -------------------------- | ----------------------------------------------------------------------------------------- |
+| `put(key, value)`      | **O(1)**                     | **O(n)**                   | Constant time on average. Worst case when all keys hash to same bucket (long chain/tree). |
+| `get(key)`             | **O(1)**                     | **O(n)**                   | Fast lookup unless there's a hash collision cluster.                                      |
+| `remove(key)`          | **O(1)**                     | **O(n)**                   | Similar to get(): find node by key, then remove.                                          |
+| `containsKey(key)`     | **O(1)**                     | **O(n)**                   | Internally same as `get(key) != null`.                                                    |
+| `containsValue(value)` | **O(n)**                     | **O(n)**                   | Must iterate all buckets; no hashing for values.                                          |
+
+in java8+ write o(logn) instead of O(n)
+
+
+           +--------------------------+
+           |        put(key, value)   |
+           +--------------------------+
+                      |
+                      v
+          +---------------------------+
+          |   hash = key.hashCode()   |
+          +---------------------------+
+                      |
+                      v
+         +------------------------------------------+
+         | index = (n - 1) & hash   [n = table size] |
+         +------------------------------------------+
+                      |
+                      v
+            +----------------------+
+            | Check bucket[index]  |
+            +----------------------+
+                /           \
+              /               \
+       [Bucket is empty]   [Bucket not empty]
+            |                    |
+            v                    v
++------------------------+   +--------------------------------------+
+| Create new Node        |   | Traverse list at that bucket         |
+| and insert into table  |   | Check if key exists using equals()   |
++------------------------+   +--------------------------------------+
+                                  |
+                           +------+------+
+                           | Key exists? |
+                           +------+------+
+                                  |
+                 +----------------+----------------+
+                 |                                 |
+             [Yes]                              [No]
+                 |                                 |
+     +------------------------+     +----------------------------------+
+     | Overwrite value in node|     | Create new node and insert at   |
+     +------------------------+     | head of linked list             |
+                                    +----------------------------------+
+
+
+
+
+
+
+               +-------------------+
+               |    get(key)       |
+               +-------------------+
+                        |
+                        v
+          +-----------------------------+
+          |   hash = key.hashCode()     |
+          +-----------------------------+
+                        |
+                        v
+        +--------------------------------------------+
+        | index = (n - 1) & hash   [n = table size]   |
+        +--------------------------------------------+
+                        |
+                        v
+             +--------------------------+
+             | Access bucket[index]     |
+             +--------------------------+
+                        |
+                        v
+      +------------------------------------------+
+      | Traverse linked list (or tree) at index  |
+      | Compare each node's key using equals()   |
+      +------------------------------------------+
+                        |
+              +---------+---------+
+              |                   |
+           [Key Match]       [No Match Found]
+              |                   |
+              v                   v
++--------------------------+   +-------------------+
+| Return value of the node |   | Return null       |
++--------------------------+   +-------------------+
