@@ -1,0 +1,59 @@
+in java both comparator and comparable is the concept of Java Collection Framework, used to sort objects
+but they have slight difference
+
+------- Difference between comparable and Comapartor
+| Feature     | `Comparable`             | `Comparator`                         |
+| ----------- | ------------------------ | ------------------------------------ |
+| Package     | `java.lang`              | `java.util.Comparator`               |
+| Method      | `compareTo(Object o)`    | `compare(Object o1, Object o2)`      |
+| Defined in  | The class itself         | A separate class (or lambda)         |
+| Use case    | Natural/default ordering | Custom/multiple sort orders          |
+| Flexibility | One sorting logic        | Multiple sorting strategies possible |
+---------------------------------------------------------------------------------
+
+Comparable: The Comparable interface is used to definr nature ordering of objects. The class it self implements
+            Comparable<ex:Emp> and Overrides the compareTo(Object o) method.
+            ex: if i have a Student class and i want to sort data by age. i can implements Comparable<Student> in the
+            class it self.
+
+
+            ArrayList<Emp> marks = new ArrayList<>();
+                    marks.add(new Emp("Deep","9429604323",15));
+                    marks.add(new Emp("Neel","8460602551",8));
+                    marks.add(new Emp("Abhay","9429604323",5));
+
+                    System.out.println(marks);
+
+                    /// comparable
+                    Collections.sort(marks);
+                    System.out.println(marks);
+
+
+Comparator: Compartor used to definr custome or multiple sorting strategies. it is implemented using seprate class
+            or Lambda expression.
+             For instance,  want to sort Student by name without changing student class, i would use Comparator<Student>
+             with a Compare(Object o1,Object o2)
+
+            ///  comparator
+                    ArrayList<Emp2> emp = new ArrayList<Emp2>();
+                    emp.add(new Emp2("Deep","9429604323",15));
+                    emp.add(new Emp2("Neel","8460602551",8));
+                    emp.add(new Emp2("Abhay","9429604323",5));
+
+                    System.out.println(emp);
+                    Collections.sort(emp, new IdComparator());
+                    System.out.println(emp);
+
+                    ArrayList<Emp2> emp1 = new ArrayList<>(emp);
+                    Collections.sort(emp1,new NameComparator());
+                    System.out.println(emp1);
+
+
+In short:
+
+Use Comparable when you want a single default sort order and can modify the class.
+
+Use Comparator when you want flexibility or multiple sorting options without modifying the class.
+
+
+

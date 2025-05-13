@@ -38,7 +38,7 @@ public class CollectionVsCollections {
         System.out.println("min value: "+ Collections.min(list));
         System.out.println("list before sorting: "+list);
         Collections.sort(list);
-        System.out.println("list after sorting: "+list);
+        System.out.println("list after sortinglearning: "+list);
         //foreach
         list.forEach((Integer val) -> System.out.println(val));
         // iterator
