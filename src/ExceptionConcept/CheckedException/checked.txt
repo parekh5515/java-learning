@@ -1,0 +1,5 @@
+Checked/ Compile time exception:
+
+
+compiler verifies them during compile time of the code and if not handle properly, code compilation will
+fail

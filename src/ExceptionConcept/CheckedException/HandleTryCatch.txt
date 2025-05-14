@@ -1,0 +1,6 @@
+1.TryCatch block:
+- Try code specify the code which can throw an exception
+- Try catch is followed by either catch block or finally block
+- catch block is used to ctach all exceptionwhich can thrown in try block
+- Multiple catch block can be used
+

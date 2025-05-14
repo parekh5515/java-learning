@@ -1,0 +1,66 @@
+What is Exception?
+
+-- it is an event that occur during the execution of program
+-- it will disrupt your program normal flow
+-- it creates an exception Object, which contain information about error like
+        - Its type of exception and message
+        - stack trace etc
+-- Runtime system use the exception object and find the class which can handle it
+
+
+
+
+Exception Handling Flow in Java
+===============================
+
+1. An exception occurs in method3().
+
+2. The program checks:
+   - Can method3() handle the exception?
+     - If NO, it passes to method2()
+
+   - Can method2() handle the exception?
+     - If NO, it passes to method1()
+
+   - Can method1() handle the exception?
+     - If NO, it passes to main()
+
+   - Can main() handle the exception?
+     - If NO, the Runtime System will terminate the program abruptly and print the stack trace.
+
+Conclusion:
+-----------
+If an exception is not caught in the method where it occurred, it propagates backward through the call stack.
+If no method in the call stack handles the exception, the program crashes and the JVM prints the stack trace.
+
+
+
+Java Exception Hierarchy
+=========================
+
+1. java.lang.Object
+   └── java.lang.Throwable
+       ├── java.lang.Error         (Serious problems, not meant to be caught)
+       │   ├── OutOfMemoryError
+       │   ├── StackOverflowError
+       │   └── VirtualMachineError
+       │
+       └── java.lang.Exception     (Problems that can be caught and handled)
+           ├── Checked Exceptions  (Must be handled or declared with 'throws')
+           │   ├── IOException
+           │   │   ├── FileNotFoundException
+           │   │   └── EOFException
+           │   ├── SQLException
+           │   └── ClassNotFoundException
+           │
+           └── Unchecked Exceptions (Runtime exceptions, not forced to handle)
+               ├── NullPointerException
+               ├── ArrayIndexOutOfBoundsException
+               ├── ArithmeticException
+               ├── IllegalArgumentException
+               └── NumberFormatException
+Checked Exceptions: Must be either caught using try-catch or declared with throws in the method signature.
+
+Unchecked Exceptions (RuntimeException): Can occur at runtime, not required to be caught or declared.
+
+Errors: Critical system-level issues; usually unrecoverable.
