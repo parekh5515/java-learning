@@ -6,7 +6,7 @@ but they have slight difference
 | ----------- | ------------------------ | ------------------------------------ |
 | Package     | `java.lang`              | `java.util.Comparator`               |
 | Method      | `compareTo(Object o)`    | `compare(Object o1, Object o2)`      |
-| Defined in  | The class itself         | A separate class (or lambda)         |
+| Defined in  | The class its   elf         | A separate class (or lambda)         |
 | Use case    | Natural/default ordering | Custom/multiple sort orders          |
 | Flexibility | One sorting logic        | Multiple sorting strategies possible |
 ---------------------------------------------------------------------------------

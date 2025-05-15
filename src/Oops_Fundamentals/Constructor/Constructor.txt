@@ -1,0 +1,86 @@
+✅ What is a Constructor?
+A constructor is a special method in Java used to initialize objects. It has the same name as the class and
+ no return type, not even void.
+
+ Types of constructors:
+
+ 1. Default Constructor
+  - created by conmpiler if no constructor is defined
+  class A {
+      A() {
+          System.out.println("Default Constructor");
+      }
+  }
+
+2. Parameterized Constructor
+- Takes parameters to initialize object fields.
+ex: class A {
+        String name;
+        int age;
+
+        A(String n, int a) {
+            name = n;
+            age = a;
+        }
+    }
+
+
+3. Copy Constructor
+- copy value from another object
+class A {
+    String name;
+    A(A obj) {
+        name = obj.name;
+    }
+}
+
+
+2. How is a constructor different from a method?
+Answer:
+
+Constructor name = class name; method can have any name.
+
+Constructor has no return type; methods must have one.
+
+Constructor is called automatically on object creation; method must be called explicitly.
+
+4. Can you overload constructors in Java?
+Answer:
+Yes, constructor overloading is allowed. Multiple constructors can be defined with different parameter lists.
+
+java
+Copy
+Edit
+Student() {}
+Student(String name) {}
+Student(String name, int age) {}
+
+
+5. What happens if you don't define a constructor?
+Answer:
+The Java compiler automatically adds a default constructor with no arguments.
+
+6. What is a copy constructor in Java?
+Answer:
+A copy constructor initializes a new object using an existing object.
+
+Student(Student s) {
+   this.name = s.name;
+}
+
+7. Can a constructor be final, static, or abstract?
+Answer:
+-No. Constructors cannot be final, static, or abstract because:
+-static would mean not tied to an object.
+-abstract makes no sense as constructors are not inherited.
+-final prevents overriding, but constructors are not inherited anyway.
+
+8. Can constructors be inherited?
+Answer:
+No, constructors are not inherited. But the child class can call the parent class constructor using
+super().
+
+9. What is the purpose of this() and super() in constructors?
+Answer:
+this() is used to call another constructor in the same class.
+super() is used to call the constructor of the parent class.

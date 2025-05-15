@@ -1,0 +1,38 @@
+✅ Why Do We Need Copy Constructors in Java?
+🔸 1. To Create a New Object with the Same Data
+Sometimes, you want to duplicate an object, keeping the same values but in a new memory location.
+
+A copy constructor helps create that exact copy without modifying the original.
+
+🧠 Think: "Cloning an object safely."
+
+
+🔸 2. To Avoid Manual Field Copying
+Without a copy constructor, you’d have to manually set each field:
+
+Student s2 = new Student();
+s2.name = s1.name;
+s2.rollNo = s1.rollNo;
+
+
+With a copy constructor:
+
+Student s2 = new Student(s1);
+👉 Cleaner, reusable, and better encapsulation.
+
+
+
+3. Useful in Immutable or Final Classes
+In classes where fields are final or class is immutable, you can’t change values once set.
+So to "update" or "replicate," you create a new object using a copy constructor.
+
+
+
+🔸 4. Prevent Issues with Object References
+If an object contains reference types (e.g., arrays, other objects), copying the reference directly
+could cause shared data, leading to bugs:
+
+Student s1 = new Student("A", new Address("Delhi"));
+Student s2 = s1;  // Now both point to the same object!
+
+But with a copy constructor, you can create deep copies to avoid this.

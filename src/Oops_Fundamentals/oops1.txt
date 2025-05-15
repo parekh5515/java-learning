@@ -1,0 +1,37 @@
+🔹 Basic OOP Concepts in Java (Using Your Code)
+1. Class:
+
+A blueprint for creating objects.
+
+Example: public class Opps1 is a class.
+
+Object:
+
+2. An instance of a class (real-world entity).
+
+Example: Opps1 o1 = new Opps1(); creates an object o1.
+
+Fields (Instance Variables):
+
+Variables inside a class but outside methods.
+
+Example: String name; int rollNo;
+
+Methods:
+
+Functions inside a class that define behavior.
+
+Example: printDetails() prints object data.
+
+3. Encapsulation:
+
+Wrapping data and methods in a class.
+
+Your class groups name, rollNo, and printDetails() together.
+
+Access Modifiers:
+
+Control visibility.
+
+public means accessible from anywhere.
+
