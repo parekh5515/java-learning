@@ -12,20 +12,17 @@ public class IterableCollections {
         System.out.println(list);
         Iterator<Integer> it = list.iterator();
 
-        while(it.hasNext()){
+        while(it.hasNext()) {
             int val = it.next();
             System.out.println(val);
-            if(val == 3){
+            if (val == 3) {
                 it.remove();
             }
         }
-
         System.out.println("Iterating values using for each loop: ");
-
-        for(int val: list){
+        for(int val: list) {
             System.out.println(val);
         }
-
         System.out.println("using for each method: ");
         list.forEach((val) -> System.out.println(val));
     }
