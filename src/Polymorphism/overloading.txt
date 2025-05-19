@@ -1,0 +1,6 @@
+- function name must be same
+- no of arguments are different
+- no of arguments are same but data type are different
+
+
+if function follow above three condition is called method overloading
