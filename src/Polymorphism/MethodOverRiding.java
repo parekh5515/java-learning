@@ -27,6 +27,5 @@ public class MethodOverRiding {
         b1.roi();
         s1.roi();
         p1.roi();
-
     }
 }
