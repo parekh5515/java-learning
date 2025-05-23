@@ -1,0 +1,36 @@
+What is stream?
+ans:
+    - we can consider stream as a pipeline through which our collection pass through
+    - While element passes through a pipeline we can perform various operation like sorting filternig etc.
+    - useful when deals with bulk processing(can do parallel processing)
+
+============================== process df stream =========================================
+step 1: create a stream
+step 2: perform intermediate operation
+step 3: Terminate Operation
+
+
+================================ Different Ways To Create A Stream ==========================
+
+1] From Collection:
+
+    List<Integer> salaryList = Arrays.asList(3000, 4100, 9000, 1000, 3500);
+    Stream<Integer> streamFromIntegerList = salaryList.stream();
+
+2]  From Array:
+
+    Integer[] salaryArray = {3000, 4100, 9000, 1000, 3500};
+    Stream<Integer> streamFromIntegerArray = Arrays.stream(salaryArray);
+
+3] From Static Method:
+
+    Stream<Integer> streamFromStaticMethod = Stream.of(...values: 1000,3500,4000);
+
+4] From Stream Builder:
+
+    Stream.Builder<Integer> streamBuilder = Stream.builder();
+    streamBuilder.add(1000).add(9000).add(3500);
+
+5] From Stream Iterate:
+
+    Stream<Integer> streamFromIterate = Stream.iterate(seed: 1000, (Integer n)-> n+5000).limit(maxSize:5);
