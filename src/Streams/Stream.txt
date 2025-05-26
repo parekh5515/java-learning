@@ -34,3 +34,84 @@ step 3: Terminate Operation
 5] From Stream Iterate:
 
     Stream<Integer> streamFromIterate = Stream.iterate(seed: 1000, (Integer n)-> n+5000).limit(maxSize:5);
+
+
+    ================= stream operations===================================================================
+
+Stream<String> nameStream = Stream.of("HELLO","EVERYBODY","HOW","ARE","YOU");
+Stream<String> filteredNames = nameStream.map((String name) -> name.toLowerCase());
+
+//op: hello,everybody,how,are,you
+
+
+============================== flatMap ===================================================================
+
+List<List<String>> sentenceList = Arrays.asList(
+    Arrays.asList("I","LOVE","JAVA"),
+    Arrays.asList("CONCEPTS","ARE","CLEAR"),
+    Arrays.asList("ITS","VERY","EASY"),
+);
+
+Stream<String> wordStream1 = sentenceList.stream().flatMap(List<String> sentence -> sentence.stream());
+//op:  I,LOVE,JAVA,CONCEPTS,ARE,CLEAR,ITS,VERY,EASY
+
+Stream<String> wordStream2 = sentenceList.stream().flatMap((List<String> sentence) -> sentence.stream().map((String val) -> val.toLowerCase()));
+//op: i,love,java,concepts,are,clear,its,very.easy
+
+=============== distinct() ===========================================================================
+
+remove duplicate from the stream
+
+int[] arr = {1,5,2,7,4,4,2,0,9};
+
+Stream<Integer> arrStream = Arrays.stream(arr).distinct();
+//op: 1,5,2,7,4,0,9
+
+===================================== sorted() =========================================================
+
+sort the elementsr
+
+int[] arr = {1,5,2,7,4,4,2,0,9}
+
+Stream<Integer> arrStream = Arrays.stream(arr).sorted();
+//op: 0,1,2,2,4,4,5,7,9
+
+                or
+Stream<Integer> arrStream = Arrays.stream(arr).sorted((Integer val1, Integer val2) -> val2-val1);
+
+
+
+
+
+==================================== peek ============================================================
+
+// helps you to see the intermediate result of the stream which is getting processed
+
+Stream<Integer> numberStream = numbers.stream()
+                .filter((Integer val) -> val > 2 )
+                .peek((Integer val) -> System.out.println(val));
+
+        List<Integer> numberList = numberStream.collect(Collectors.toList());
+
+
+
+===================================== Limit ==============================================================
+
+Truncate the stream, to have no longer than given max size
+Stream<Integer> noList = numbers.stream().limit(3);
+        List<Integer> li = noList.collect(Collectors.toList());
+        System.out.println(li);
+//o/p: 2,1,3
+
+
+=========================== mapToInt ========================== =============================== ========
+
+int[] numbersArray = {2,1,4,7};
+IntStream numberStream = Arrays.stream(numbersArray);
+
+numberStream.filter((int val) -> val>2)
+int[] filteredArray = numberStream.toArray();
+//op: 4,7
+
+
+
