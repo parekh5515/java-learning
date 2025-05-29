@@ -1,0 +1,30 @@
+//////   Process:::
+
+process is an instance of program that is getting executed.
+it has its own resources like memory,thread etc. OS allocates these resources to process when it is created
+
+
+compilation: generate byte code that can be executed by machine
+execution: at this point, jvm starts new process
+
+
+
+/////                        Thread:
+
+- Thread is known as light wight process
+or
+smallest sequence of instruction that are executed by cpu independently
+
+- one process can have multiple threads
+
+- when a process is created it starts with one thread and that initial thread is known as main thread and from
+that we can create multiple thread to perform task concurrently.
+
+example:
+
+public class Main{
+    public static void main(String[] args){
+        System.out.println("Thread Name: "+ Thread.currentThread().getName());
+    }
+}
+output is: Thread Name: main
