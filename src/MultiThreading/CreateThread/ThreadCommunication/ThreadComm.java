@@ -15,6 +15,7 @@ class SharedResource{
         }
         data = value;
         hasData = true;
+
         System.out.println("Produced: " + value);
         notify();
     }
